@@ -12,10 +12,13 @@ import Foundation
 struct AuthAttributes {
     static var shared = AuthAttributes()
     
-    var fieldWidth: Int = 100
-    var fieldHeight: Int = 40
+    //Attributes for aligning text fields
+    var fieldWidth: CGFloat = 100
+    var fieldHeight: CGFloat = 40
+    var fieldSpacing: CGFloat = 25
     
     
-    var fieldSpacing: Int = 20
+    //Spacing between the bottom text question (already have acc/don't have acc) and the respective alternative option
+    var altSpacing: CGFloat = 20
     private init() {}
 }
