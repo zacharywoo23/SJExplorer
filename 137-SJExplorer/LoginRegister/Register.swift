@@ -22,8 +22,9 @@ struct Register: View {
     
     var body: some View {
         ZStack {
-            //May change accordingly depending on visbility on iphone
-            Color(hex: 0x7c9cd4)
+            //Gradient background
+            
+            LinearGradient(gradient: Gradient(colors: [.blue, Color(hex: 0x7c9cd4)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
             

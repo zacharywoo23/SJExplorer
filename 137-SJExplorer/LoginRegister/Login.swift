@@ -21,8 +21,9 @@ struct ContentView: View {
             
             //May change accordingly depending on visbility on iphone
             
-            //Change color to gradient later
-            Color(hex: 0x7c9cd4)
+            //Gradient background
+            
+            LinearGradient(gradient: Gradient(colors: [.blue, Color(hex: 0x7c9cd4)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             VStack(alignment: .center) {
                 Image(.logo).resizable().frame(width: 200, height: 200)
