@@ -33,7 +33,7 @@ struct Register: View {
                 
                 Text("Sign Up").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 //Sign in fields
-                TextField(" Username", text: $username).foregroundStyle(.blue)
+                TextField(" Username", text: $username).foregroundStyle(.black)
                 
                     .autocorrectionDisabled(true)
 #if !os(macOS)
@@ -68,7 +68,9 @@ struct Register: View {
                 .padding(.top, -30)
                 
                 Button(action: {
-                    // Action
+                    /*ACTION:
+                     Create user account with the credentials entered
+                     */
                 }) {
                     Text("Sign up")
                         .foregroundColor(.white)
@@ -85,7 +87,10 @@ struct Register: View {
                 Text("Already have an account?")
                 Spacer().frame(height: altSpacing)
                 Button(action: {
-                    // Action
+                    /*ACTION:
+                     Log user into Firebase database
+                     Take user to the main page
+                     */
                 }) {
                     Text("Sign in")
                         .foregroundColor(.white)

@@ -31,7 +31,7 @@ struct ContentView: View {
                 Text("Sign In").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 //Sign in fields
                 
-                TextField(" Username", text: $username).foregroundStyle(.blue)
+                TextField(" Username", text: $username).foregroundStyle(.black)
                     
                             .autocorrectionDisabled(true)
                             #if !os(macOS)
@@ -52,7 +52,10 @@ struct ContentView: View {
                 
                 Spacer().frame(height:fieldSpacing)
                 Button(action: {
-                    //action
+                    /*ACTION:
+                     Log user into Firebase database
+                     Take user to the main page
+                     */
                 }) {
                     Text("Sign In")
                         .foregroundStyle(.white)
