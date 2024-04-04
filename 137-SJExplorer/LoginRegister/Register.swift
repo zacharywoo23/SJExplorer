@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 
 struct Register: View {
     @State private var username: String = ""
@@ -111,6 +111,8 @@ struct Register: View {
     }
     
 }
+
+//The custom theme color used in the background
 extension Color {
     init(hex: UInt, alpha: Double = 1) {
         self.init(
