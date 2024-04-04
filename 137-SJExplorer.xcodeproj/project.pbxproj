@@ -15,6 +15,9 @@
 		CE4B57D72BA4AD5400784513 /* _37_SJExplorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57D62BA4AD5400784513 /* _37_SJExplorerTests.swift */; };
 		CE4B57E12BA4AD5400784513 /* _37_SJExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */; };
 		CE4B57E32BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */; };
+		D8DEDE262BBE92FA00161AD5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE252BBE92FA00161AD5 /* Map.swift */; };
+		D8DEDE282BBE991200161AD5 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE272BBE991200161AD5 /* RequestLocation.swift */; };
+		D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE292BBE995400161AD5 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		CE4B57DC2BA4AD5400784513 /* 137-SJExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "137-SJExplorerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITests.swift; sourceTree = "<group>"; };
 		CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D8DEDE252BBE92FA00161AD5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		D8DEDE272BBE991200161AD5 /* RequestLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocation.swift; sourceTree = "<group>"; };
+		D8DEDE292BBE995400161AD5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,9 @@
 				CE4B57C72BA4AD4E00784513 /* Item.swift */,
 				CE4B57C92BA4AD5300784513 /* Assets.xcassets */,
 				CE4B57CB2BA4AD5300784513 /* Preview Content */,
+				D8DEDE252BBE92FA00161AD5 /* Map.swift */,
+				D8DEDE272BBE991200161AD5 /* RequestLocation.swift */,
+				D8DEDE292BBE995400161AD5 /* LocationManager.swift */,
 			);
 			path = "137-SJExplorer";
 			sourceTree = "<group>";
@@ -262,6 +271,9 @@
 			files = (
 				CE4B57C62BA4AD4E00784513 /* SJExplorer.swift in Sources */,
 				CE4B57C82BA4AD4E00784513 /* Item.swift in Sources */,
+				D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */,
+				D8DEDE282BBE991200161AD5 /* RequestLocation.swift in Sources */,
+				D8DEDE262BBE92FA00161AD5 /* Map.swift in Sources */,
 				CE4B57C42BA4AD4E00784513 /* _37_SJExplorerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +441,7 @@
 				DEVELOPMENT_TEAM = 482AAZ8M27;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,6 +471,7 @@
 				DEVELOPMENT_TEAM = 482AAZ8M27;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
