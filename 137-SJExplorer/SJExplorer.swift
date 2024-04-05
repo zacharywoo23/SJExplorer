@@ -2,13 +2,10 @@
 //  ContentView.swift
 //  137-SJExplorer
 //
-//  Created by Leslie Ortiz on 3/15/24.
 //
 
 import SwiftUI
 import SwiftData
-
-
 
 
 struct SJExplorer: View {
@@ -16,7 +13,18 @@ struct SJExplorer: View {
     @Query private var items: [Item]
 
     var body: some View {
-        Text("SJExplorer")
+        NavigationView {
+            VStack {
+                Text("SJExplorer")
+                //temporary for navigation, not final design
+                Spacer()
+                    .frame(height:40)
+                NavigationLink(destination: RegisterView()) {
+                    Text("Sign Up")
+                }
+                .foregroundStyle(.black)
+            }
+        }
     }
     
 }
