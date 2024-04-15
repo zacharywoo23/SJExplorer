@@ -8,11 +8,33 @@
 import SwiftUI
 import FirebaseAuth
 
+class RegisterViewModel: ObservableObject {
+    @Published var email = ""
+    @Published var password: String = ""
+    
+    func register() {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("Credentials not entered")
+            return
+        }
+        Task {
+            do {
+                let userData: () = try await AuthManager.shared.createUser(email: email, password: password)
+                print("Successful login")
+                print(userData)
+            } catch {
+                print("error: \(error)")
+            }
+        }
+    }
+}
+
 struct RegisterView: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
+    
     //Consent box checked
     @State private var isChecked: Bool = false
+    @StateObject private var viewModel=RegisterViewModel()
+    //@EnvironmentObject var authentication: AuthManager
     
     var fieldSpacing = AuthAttributes.shared.fieldSpacing
     var fieldWidth = AuthAttributes.shared.fieldWidth
@@ -34,7 +56,7 @@ struct RegisterView: View {
                     
                     Text("Sign Up").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     //Sign in fields
-                    TextField(" Username", text: $username).foregroundStyle(.black)
+                    TextField(" Username", text: $viewModel.email).foregroundStyle(.black)
                     
                         .autocorrectionDisabled(true)
 #if !os(macOS)
@@ -42,14 +64,11 @@ struct RegisterView: View {
 #endif
                         .frame(width: fieldWidth, height: fieldHeight)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
-                    //add border to this and SecureField
+                    
                     Spacer().frame(height:fieldSpacing)
                     
-                    SecureField(" Password", text: $password)
-                        .onSubmit {
-                            //handleLogin(username: //username, password: //password)
-                        }
-                    //border of the button
+                    SecureField(" Password", text: $viewModel.password)
+                        
                         .frame(width: fieldWidth, height: fieldHeight)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
                     Spacer().frame(height:fieldSpacing)
@@ -73,15 +92,23 @@ struct RegisterView: View {
                      Send user to main page
                      */
                     
-                    NavigationLink(destination: SJExplorer()) {
+                    Button {
+                        viewModel.register()
+                    } label: {
                         Text("Sign Up")
+                            .foregroundStyle(.white)
+                            .padding(10)
+                            .background(
+                                Capsule()
+                                    .fill(Color.blue)
+                            )
+                    
                     }
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .background(
-                        Capsule()
-                            .fill(Color.blue)
-                    )
+                    
+                   
+                    
+                   
+                    
                     
                     
                     
@@ -110,6 +137,8 @@ struct RegisterView: View {
             
         //}
     }
+    
+    
     
 }
 

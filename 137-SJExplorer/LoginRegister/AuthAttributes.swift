@@ -13,7 +13,7 @@ struct AuthAttributes {
     static var shared = AuthAttributes()
     
     //Attributes for aligning text fields
-    var fieldWidth: CGFloat = 100
+    var fieldWidth: CGFloat = 150
     var fieldHeight: CGFloat = 40
     var fieldSpacing: CGFloat = 25
     

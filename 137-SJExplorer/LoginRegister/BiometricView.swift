@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Biometric: View {
+struct BiometricView: View {
     var body: some View {
         
         ZStack{
@@ -32,5 +32,5 @@ struct Biometric: View {
 }
 
 #Preview {
-    Biometric()
+    BiometricView()
 }

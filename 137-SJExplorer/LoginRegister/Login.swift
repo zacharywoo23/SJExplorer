@@ -8,9 +8,31 @@
 import SwiftUI
 import FirebaseAuth
 
+class LoginViewModel: ObservableObject {
+    @Published var email = ""
+    @Published var password: String = ""
+    
+    func signIn() {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("Credentials not entered")
+            return
+        }
+        //change to fetch the existing user with correct credentials
+        Task {
+            do {
+                let userData: () = try await AuthManager.shared.createUser(email: email, password: password)
+                print("Successful login")
+                print(userData)
+            } catch {
+                print("error: \(error)")
+            }
+        }
+    }
+}
+
 struct LoginView: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
+    
+    @StateObject private var viewModel=LoginViewModel()
     
     var fieldSpacing = AuthAttributes.shared.fieldSpacing
     var fieldWidth = AuthAttributes.shared.fieldWidth
@@ -33,34 +55,48 @@ struct LoginView: View {
                     Text("Sign In").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     //Sign in fields
                     
-                    TextField(" Username", text: $username).foregroundStyle(.black)
+                    TextField(" Username", text: $viewModel.email).foregroundStyle(.black)
                     
                         .autocorrectionDisabled(true)
 #if !os(macOS)
                         .textInputAutocapitalization(.never)
+                
 #endif
                         .frame(width: fieldWidth, height: fieldHeight)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
                     
                     Spacer().frame(height:fieldSpacing)
                     
-                    SecureField(" Password", text: $password)
-                        .onSubmit {
-                            //handleLogin(username: //username, password: //password)
-                        }
+                    SecureField("Password", text: $viewModel.password)
+                        .padding()
                     //border of the button
                         .frame(width: fieldWidth, height: fieldHeight)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
                     
                     Spacer().frame(height:fieldSpacing)
                     
-                    /*ACTION:
-                     Take user to biometric page
-                     (temporary: take them directly to main page)
-                     */
                     
-                    VStack {
-                        NavigationLink(destination: SJExplorer()) {
+                    
+                    
+                        /*
+                         Sign In button
+                         ACTION:
+                         Take user to main page
+                        
+                         */
+                        Button {
+                            viewModel.signIn()
+                        } label: {
+                            Text("Sign In")
+                                .foregroundStyle(.white)
+                                .padding(10)
+                                .background(
+                                    Capsule()
+                                        .fill(Color.blue)
+                                )
+                        
+                        }
+                        /*NavigationLink(destination: SJExplorer()) {
                             Text("Sign in")
                         }
                         .foregroundStyle(.white)
@@ -68,6 +104,21 @@ struct LoginView: View {
                         .background(
                             Capsule()
                                 .fill(Color.blue)
+                        )
+                         */
+                        
+                        Text("or")
+                        /*
+                         Face ID sign in, take user to biometric page
+                         */
+                        NavigationLink(destination: BiometricView()) {
+                            Text("Use Face ID to sign in")
+                        }
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .background(
+                            Rectangle()
+                                .fill(Color.secondary)
                         )
                         Spacer().frame(height:fieldSpacing)
                         Text("Don't have an account?")
@@ -83,7 +134,7 @@ struct LoginView: View {
                             Capsule()
                                 .fill(Color.blue)
                         )
-                    }
+                   
                     
                 }
                 
@@ -97,6 +148,8 @@ struct LoginView: View {
         
         
     }
+    
+    
 }
 
 #Preview {

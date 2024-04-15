@@ -25,6 +25,8 @@ struct SJExplorer: View {
                 .foregroundStyle(.black)
             }
         }
+        .navigationViewStyle(.stack)
+        
     }
     
 }
