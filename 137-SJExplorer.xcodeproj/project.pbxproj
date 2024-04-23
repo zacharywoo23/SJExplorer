@@ -16,6 +16,7 @@
 		C144C9092BBFCBB3008066EA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C144C9082BBFCBB3008066EA /* FirebaseAuth */; };
 		C144C90B2BBFCBB3008066EA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C144C90A2BBFCBB3008066EA /* FirebaseFirestore */; };
 		C144C90D2BBFCBB3008066EA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C144C90C2BBFCBB3008066EA /* FirebaseFirestoreSwift */; };
+		C16DCE602BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C16DCE5F2BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist */; };
 		C19A24652BC77C6500C03F90 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19A24642BC77C6500C03F90 /* AuthManager.swift */; };
 		C19A24672BC7CEBC00C03F90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19A24662BC7CEBC00C03F90 /* GoogleService-Info.plist */; };
 		CE4B57C42BA4AD4E00784513 /* _37_SJExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57C32BA4AD4E00784513 /* _37_SJExplorerApp.swift */; };
@@ -53,7 +54,7 @@
 		C144C8FB2BBFC4DC008066EA /* BiometricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricView.swift; sourceTree = "<group>"; };
 		C144C8FC2BBFC4DC008066EA /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C144C8FD2BBFC4DC008066EA /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		C16C933E2BCDBA1D0083E2C8 /* -37-SJExplorer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-37-SJExplorer-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C16DCE5F2BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "-37-SJExplorer-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C19A24642BC77C6500C03F90 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C19A24662BC7CEBC00C03F90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE4B57C02BA4AD4E00784513 /* 137-SJExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "137-SJExplorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +139,7 @@
 		CE4B57C22BA4AD4E00784513 /* 137-SJExplorer */ = {
 			isa = PBXGroup;
 			children = (
-				C16C933E2BCDBA1D0083E2C8 /* -37-SJExplorer-Info.plist */,
+				C16DCE5F2BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist */,
 				C144C8FE2BBFC4DC008066EA /* LoginRegister */,
 				CE4B57C32BA4AD4E00784513 /* _37_SJExplorerApp.swift */,
 				CE4B57C52BA4AD4E00784513 /* SJExplorer.swift */,
@@ -293,6 +294,7 @@
 			files = (
 				CE4B57CD2BA4AD5300784513 /* Preview Assets.xcassets in Resources */,
 				CE4B57CA2BA4AD5300784513 /* Assets.xcassets in Resources */,
+				C16DCE602BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist in Resources */,
 				C19A24672BC7CEBC00C03F90 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
