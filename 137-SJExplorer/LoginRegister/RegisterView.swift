@@ -14,14 +14,20 @@ class RegisterViewModel: ObservableObject {
     
     func register() {
         guard !email.isEmpty, !password.isEmpty else {
-            print("Credentials not entered")
+            print("Credentials invalid")
             return
         }
+        guard !(password.count < 6) else {
+            print("Password must be at least 6 characters")
+            return
+        }
+        
         Task {
             do {
-                let userData: () = try await AuthManager.shared.createUser(email: email, password: password)
+                let userData = try await AuthManager.shared.createUser(email: email, password: password)
                 print("Successful login")
-                print(userData)
+                
+                
             } catch {
                 print("error: \(error)")
             }
@@ -34,7 +40,7 @@ struct RegisterView: View {
     //Consent box checked
     @State private var isChecked: Bool = false
     @StateObject private var viewModel=RegisterViewModel()
-    //@EnvironmentObject var authentication: AuthManager
+    @ObservedObject var authManager : AuthManager
     
     var fieldSpacing = AuthAttributes.shared.fieldSpacing
     var fieldWidth = AuthAttributes.shared.fieldWidth
@@ -56,7 +62,7 @@ struct RegisterView: View {
                     
                     Text("Sign Up").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     //Sign in fields
-                    TextField(" Username", text: $viewModel.email).foregroundStyle(.black)
+                    TextField("Email", text: $viewModel.email).foregroundStyle(.black)
                     
                         .autocorrectionDisabled(true)
 #if !os(macOS)
@@ -94,6 +100,10 @@ struct RegisterView: View {
                     
                     Button {
                         viewModel.register()
+                        authManager.isLoggedIn=true
+                        authManager.setIsRegistering(isRegistering: false)
+                        authManager.setUsingBioLogin(usingBio: false)
+                        
                     } label: {
                         Text("Sign Up")
                             .foregroundStyle(.white)
@@ -118,7 +128,20 @@ struct RegisterView: View {
                     /*ACTION:
                      Take user to Login view
                      */
-                    NavigationLink(destination: LoginView()) {
+                    Button {
+                        authManager.setUsingBioLogin(usingBio:false)
+                        authManager.setIsRegistering(isRegistering: false)
+                    } label: {
+                        Text("Sign In")
+                            .foregroundStyle(.white)
+                            .padding(10)
+                            .background(
+                                Capsule()
+                                    .fill(Color.blue)
+                            )
+                    
+                    }
+                    /*NavigationLink(destination: LoginView(authManager: authManager)) {
                         Text("Sign In")
                     }
                     .foregroundStyle(.white)
@@ -126,7 +149,7 @@ struct RegisterView: View {
                     .background(
                         Capsule()
                             .fill(Color.blue)
-                    )
+                    )*/
                     
                     
                     
@@ -157,5 +180,5 @@ extension Color {
 
 
 #Preview {
-    RegisterView()
+    RegisterView(authManager: AuthManager.shared)
 }
