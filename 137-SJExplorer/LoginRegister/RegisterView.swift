@@ -8,30 +8,34 @@
 import SwiftUI
 import FirebaseAuth
 
+
 class RegisterViewModel: ObservableObject {
     @Published var email = ""
     @Published var password: String = ""
     
-    func register() {
+    enum RegistrationError: Error {
+        case invalidCredentials
+        case passwordTooShort
+    }
+    
+    func register() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("Credentials invalid")
-            return
+            throw RegistrationError.invalidCredentials
         }
         guard !(password.count < 6) else {
             print("Password must be at least 6 characters")
-            return
+            throw RegistrationError.passwordTooShort
         }
         
-        Task {
-            do {
-                let userData = try await AuthManager.shared.createUser(email: email, password: password)
-                print("Successful login")
-                
-                
-            } catch {
-                print("error: \(error)")
-            }
-        }
+        
+        let userData = try await AuthManager.shared.createUser(email: email, password: password)
+        print("Successful register")
+        print(userData)
+        
+        
+        
+        
     }
 }
 
@@ -99,10 +103,22 @@ struct RegisterView: View {
                      */
                     
                     Button {
-                        viewModel.register()
-                        authManager.isLoggedIn=true
-                        authManager.setIsRegistering(isRegistering: false)
-                        authManager.setUsingBioLogin(usingBio: false)
+                        if !isChecked {
+                            print("You must check the agreement box.")
+                        } else {
+                            
+                            Task {
+                                do {
+                                    try await viewModel.register()
+                                    authManager.isLoggedIn=true
+                                    authManager.setIsRegistering(isRegistering: false)
+                                    authManager.setUsingBioLogin(usingBio: false)
+                                } catch {
+                                    print("Try again")
+                                }
+                            }
+                        }
+                        
                         
                     } label: {
                         Text("Sign Up")

@@ -36,11 +36,20 @@ class AuthManager: ObservableObject {
         return AuthModel(user:user)
     }
     //creates a new user
-    func createUser(email:String, password: String) async throws {
-        let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-        let result = AuthModel(user: authDataResult.user)
-        Auth.auth().currentUser?.email
+    func createUser(email:String, password: String) async throws -> AuthModel {
+        let result = try await Auth.auth().createUser(withEmail: email, password: password)
+        return AuthModel(user: result.user)
+        
     }
+    
+    //sign in existing usr
+    func signIn(email:String, password: String) async throws -> AuthModel {
+        let result = try await Auth.auth().signIn(withEmail: email, password: password)
+        return AuthModel(user: result.user)
+       
+    }
+    
+    
     //sign out the user
     func signOut() {
         do {

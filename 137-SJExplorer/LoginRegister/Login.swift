@@ -12,22 +12,28 @@ class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password: String = ""
     
-    func signIn() {
+    enum LoginError: Error {
+        case invalidCredentials
+        
+    }
+    
+    func signIn() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("Credentials not entered")
-            return
+            throw LoginError.invalidCredentials
         }
         //change to fetch the existing user with correct credentials
-        Task {
-            do {
-                let userData: () = try await AuthManager.shared.createUser(email: email, password: password)
+        /*Task {
+            do {*/
+                let userData = try await AuthManager.shared.signIn(email: email, password: password)
+                
                 print("Successful login")
                 print(userData)
-            } catch {
+            } /* catch {
                 print("error: \(error)")
-            }
-        }
-    }
+            }*/
+        //}
+    //}
 }
 
 struct LoginView: View {
@@ -87,7 +93,16 @@ struct LoginView: View {
                  
                  */
                 Button {
-                    viewModel.signIn()
+                    Task {
+                        do {
+                            try await viewModel.signIn()
+                            authManager.isLoggedIn=true
+                        } catch {
+                            print("incorrect credentials")
+                        }
+                    }
+                    
+                    
                 } label: {
                     Text("Sign In")
                         .foregroundStyle(.white)

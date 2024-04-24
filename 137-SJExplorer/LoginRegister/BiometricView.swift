@@ -16,7 +16,7 @@ struct BiometricView: View {
     var body: some View {
         
         
-        
+        //Biometric view
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
@@ -34,25 +34,10 @@ struct BiometricView: View {
                         authenticate()
                     }
                 
-                /*if unlocked {
-                    NavigationLink(destination: SJExplorer()) {
-                        Text("Continue")
-                    }
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .background(
-                        Capsule()
-                            .fill(Color.blue)
-                    )
-                }*/
+                
                 
             }
         }
-        
-        
-        
-        //Actual face scan logic to be implemented
-       
     }
     
     func authenticate() {
