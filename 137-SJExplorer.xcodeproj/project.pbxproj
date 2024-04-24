@@ -27,6 +27,7 @@
 		CE4B57D72BA4AD5400784513 /* _37_SJExplorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57D62BA4AD5400784513 /* _37_SJExplorerTests.swift */; };
 		CE4B57E12BA4AD5400784513 /* _37_SJExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */; };
 		CE4B57E32BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */; };
+		D86963292BD9C2B7001162F8 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */; };
 		D8DEDE262BBE92FA00161AD5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE252BBE92FA00161AD5 /* Map.swift */; };
 		D8DEDE282BBE991200161AD5 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE272BBE991200161AD5 /* RequestLocation.swift */; };
 		D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE292BBE995400161AD5 /* LocationManager.swift */; };
@@ -68,6 +69,7 @@
 		CE4B57DC2BA4AD5400784513 /* 137-SJExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "137-SJExplorerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITests.swift; sourceTree = "<group>"; };
 		CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		D8DEDE252BBE92FA00161AD5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		D8DEDE272BBE991200161AD5 /* RequestLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocation.swift; sourceTree = "<group>"; };
 		D8DEDE292BBE995400161AD5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -147,8 +149,8 @@
 				CE4B57C92BA4AD5300784513 /* Assets.xcassets */,
 				CE4B57CB2BA4AD5300784513 /* Preview Content */,
 				D8DEDE252BBE92FA00161AD5 /* Map.swift */,
-				D8DEDE272BBE991200161AD5 /* RequestLocation.swift */,
-				D8DEDE292BBE995400161AD5 /* LocationManager.swift */,
+				D869632A2BD9C50B001162F8 /* Location */,
+				D869632C2BD9C5D0001162F8 /* Network */,
 			);
 			path = "137-SJExplorer";
 			sourceTree = "<group>";
@@ -176,6 +178,23 @@
 				CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */,
 			);
 			path = "137-SJExplorerUITests";
+			sourceTree = "<group>";
+		};
+		D869632A2BD9C50B001162F8 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				D8DEDE272BBE991200161AD5 /* RequestLocation.swift */,
+				D8DEDE292BBE995400161AD5 /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		D869632C2BD9C5D0001162F8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C144C9002BBFC4DC008066EA /* BiometricView.swift in Sources */,
+				D86963292BD9C2B7001162F8 /* NetworkMonitor.swift in Sources */,
 				CE4B57C62BA4AD4E00784513 /* SJExplorer.swift in Sources */,
 				C144C8FF2BBFC4DC008066EA /* AuthAttributes.swift in Sources */,
 				CE4B57C82BA4AD4E00784513 /* Item.swift in Sources */,
