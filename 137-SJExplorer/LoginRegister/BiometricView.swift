@@ -7,6 +7,8 @@
 
 import SwiftUI
 import LocalAuthentication
+import FirebaseAuth
+
 
 struct BiometricView: View {
     @State private var unlocked = false
@@ -50,13 +52,17 @@ struct BiometricView: View {
                 if success {
                     text="Unlocked"
                     unlocked=true
+                    Auth.auth().signInAnonymously()
                     AuthManager.shared.isLoggedIn=true
+                    let user = try? authManager.getUser()
+                    
+                    print( user == nil)
                 } else {
                     text="Failed"
                 }
                 
             }
-                
+            //If user isn't enrolled in face ID
         } else {
             print("no face id on this device")
         }

@@ -22,18 +22,13 @@ class LoginViewModel: ObservableObject {
             print("Credentials not entered")
             throw LoginError.invalidCredentials
         }
-        //change to fetch the existing user with correct credentials
-        /*Task {
-            do {*/
+        
                 let userData = try await AuthManager.shared.signIn(email: email, password: password)
                 
                 print("Successful login")
                 print(userData)
-            } /* catch {
-                print("error: \(error)")
-            }*/
-        //}
-    //}
+            } 
+       
 }
 
 struct LoginView: View {
@@ -54,8 +49,8 @@ struct LoginView: View {
             //May change accordingly depending on visbility on iphone
             
             //Gradient background
-            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            /*LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
+                .ignoresSafeArea()*/
             
             VStack(alignment: .center) {
                 Image(.logo).resizable().frame(width: 200, height: 200)

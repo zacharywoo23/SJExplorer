@@ -57,8 +57,9 @@ struct RegisterView: View {
             ZStack {
                 //Gradient background
                 
-                LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
+                /*LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
                     .ignoresSafeArea()
+                */
                 
                 
                 VStack(alignment: .center) {
