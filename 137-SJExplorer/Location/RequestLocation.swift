@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct RequestLocation: View {
+    let cBlue = Color(hex: 0x7C9CD4, alpha: 0.6)
+    let cBlue2 = Color(hex: 0x7C9CD4, alpha: 1.0)
+    
     var body: some View {
         ZStack {
-            Color(.systemBlue).ignoresSafeArea()
+            Color(cBlue).ignoresSafeArea()
             
             VStack {
                 Spacer()
                 
-                Image(systemName: "paperplane.circle.fill").resizable()
+                Image(.logo).resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
                     .padding(.bottom, 32)

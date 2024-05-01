@@ -8,51 +8,33 @@
 import Foundation
 import Network
 
-final class NetworkMonitor {
-    static let shared = NetworkMonitor()
+class NetworkMonitor: ObservableObject {
     
-    private let queue = DispatchQueue.global()
-    private let monitor: NWPathMonitor
+    let queue = DispatchQueue(label: "NetworkManager")
+    let monitor = NWPathMonitor()
     
-    public private(set) var isConnected: Bool = false
+    @Published var isConnected = true
     
-    public private(set) var connectionType: ConnectionType = .unknown
-    
-    enum ConnectionType {
-        case wifi
-        case cellular
-        case ethernet
-        case unknown
+    var imageName: String {
+        return isConnected ? "wifi" : "wifi.slash"
     }
-    
-    private init() {
-        monitor = NWPathMonitor()
-    }
-    
-    public func startMonitoring() {
-        monitor.start(queue: queue)
-        monitor.pathUpdateHandler = { [weak self] path in
-            self?.isConnected = path.status != .satisfied
-            
-            self?.getConnectionType(path)
-            
-            
-        }
-    }
-    
-    public func stopMonitoring() {
-        monitor.cancel()
-    }
-    
-    private func getConnectionType(_ path: NWPath) {
-        if path.usesInterfaceType(.wifi) {
-            connectionType = .wifi
-        } else if path.usesInterfaceType(.wiredEthernet) {
-            connectionType = .ethernet
-        } else if path.usesInterfaceType(.cellular) {
-            connectionType = .cellular
+    var connectionDescription: String {
+        if isConnected {
+            return "Connected to the Internet"
         } else {
-            connectionType = .unknown
+            return "Cannot Connect to the Internet"
         }
     }
+    init() {
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                self.isConnected = path.status == .satisfied
+            }
+        }
+        
+        monitor.start(queue: queue)
+    }
+    
+    
+    
 }

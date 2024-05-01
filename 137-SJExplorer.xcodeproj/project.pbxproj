@@ -28,6 +28,9 @@
 		CE4B57E12BA4AD5400784513 /* _37_SJExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */; };
 		CE4B57E32BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */; };
 		D86963292BD9C2B7001162F8 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */; };
+		D869633C2BE2FAE1001162F8 /* HomeTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869633B2BE2FAE1001162F8 /* HomeTabs.swift */; };
+		D86963442BE34993001162F8 /* NoWifi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86963432BE34993001162F8 /* NoWifi.swift */; };
+		D86963462BE34D13001162F8 /* OfflineMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86963452BE34D13001162F8 /* OfflineMode.swift */; };
 		D8DEDE262BBE92FA00161AD5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE252BBE92FA00161AD5 /* Map.swift */; };
 		D8DEDE282BBE991200161AD5 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE272BBE991200161AD5 /* RequestLocation.swift */; };
 		D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEDE292BBE995400161AD5 /* LocationManager.swift */; };
@@ -70,6 +73,9 @@
 		CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITests.swift; sourceTree = "<group>"; };
 		CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		D869633B2BE2FAE1001162F8 /* HomeTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabs.swift; sourceTree = "<group>"; };
+		D86963432BE34993001162F8 /* NoWifi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoWifi.swift; sourceTree = "<group>"; };
+		D86963452BE34D13001162F8 /* OfflineMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMode.swift; sourceTree = "<group>"; };
 		D8DEDE252BBE92FA00161AD5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		D8DEDE272BBE991200161AD5 /* RequestLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocation.swift; sourceTree = "<group>"; };
 		D8DEDE292BBE995400161AD5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 		CE4B57C22BA4AD4E00784513 /* 137-SJExplorer */ = {
 			isa = PBXGroup;
 			children = (
+				D869632C2BD9C5D0001162F8 /* Network */,
 				C16DCE5F2BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist */,
 				C144C8FE2BBFC4DC008066EA /* LoginRegister */,
 				CE4B57C32BA4AD4E00784513 /* _37_SJExplorerApp.swift */,
@@ -148,9 +155,9 @@
 				CE4B57C72BA4AD4E00784513 /* Item.swift */,
 				CE4B57C92BA4AD5300784513 /* Assets.xcassets */,
 				CE4B57CB2BA4AD5300784513 /* Preview Content */,
-				D8DEDE252BBE92FA00161AD5 /* Map.swift */,
 				D869632A2BD9C50B001162F8 /* Location */,
-				D869632C2BD9C5D0001162F8 /* Network */,
+				D869633B2BE2FAE1001162F8 /* HomeTabs.swift */,
+				D86963472BE350A6001162F8 /* Offline */,
 			);
 			path = "137-SJExplorer";
 			sourceTree = "<group>";
@@ -183,6 +190,7 @@
 		D869632A2BD9C50B001162F8 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				D8DEDE252BBE92FA00161AD5 /* Map.swift */,
 				D8DEDE272BBE991200161AD5 /* RequestLocation.swift */,
 				D8DEDE292BBE995400161AD5 /* LocationManager.swift */,
 			);
@@ -195,6 +203,15 @@
 				D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D86963472BE350A6001162F8 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				D86963432BE34993001162F8 /* NoWifi.swift */,
+				D86963452BE34D13001162F8 /* OfflineMode.swift */,
+			);
+			path = Offline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,10 +364,13 @@
 				C144C9022BBFC4DC008066EA /* RegisterView.swift in Sources */,
 				D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */,
 				D8DEDE282BBE991200161AD5 /* RequestLocation.swift in Sources */,
+				D86963462BE34D13001162F8 /* OfflineMode.swift in Sources */,
+				D869633C2BE2FAE1001162F8 /* HomeTabs.swift in Sources */,
 				C144C9012BBFC4DC008066EA /* Login.swift in Sources */,
 				D8DEDE262BBE92FA00161AD5 /* Map.swift in Sources */,
 				CE4B57C42BA4AD4E00784513 /* _37_SJExplorerApp.swift in Sources */,
 				C19A24652BC77C6500C03F90 /* AuthManager.swift in Sources */,
+				D86963442BE34993001162F8 /* NoWifi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
