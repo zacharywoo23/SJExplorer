@@ -20,8 +20,7 @@ struct BiometricView: View {
         
         //Biometric view
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            
             VStack {
                 
                     Image("face")
@@ -29,12 +28,24 @@ struct BiometricView: View {
                         .frame(width: 350, height: 350)
                     Spacer()
                         .frame(height: 50)
+                
                     Text(text)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     Button("Authenticate") {
                         authenticate()
                     }
+                    Spacer()
+                    .frame(height: 50)
+                    Button("Sign Out"){
+                        authManager.signOut()
+                    }
+                    .foregroundStyle(.black)
+                    .padding(10)
+                    .background(
+                        Capsule()
+                            .fill(Color.blue)
+                    )
                 
                 
                 
@@ -50,16 +61,18 @@ struct BiometricView: View {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "security") { success, authenticationError in
                 
                 if success {
-                    text="Unlocked"
-                    unlocked=true
-                    Auth.auth().signInAnonymously()
-                    AuthManager.shared.isLoggedIn=true
-                    let user = try? authManager.getUser()
+                    DispatchQueue.main.async {
+                        authManager.setIsBioAuthenticated(isBioAuthenticated: true)
+                        text = "Unlocked"
+                        unlocked = true
+                        
+                    }
                     
-                    print( user == nil)
                 } else {
-                    text="Failed"
-                }
+                    DispatchQueue.main.async {
+                        
+                        text = "Failed"
+                    }                }
                 
             }
             //If user isn't enrolled in face ID

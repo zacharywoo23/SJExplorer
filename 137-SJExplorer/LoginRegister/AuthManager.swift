@@ -22,7 +22,7 @@ struct AuthModel {
 class AuthManager: ObservableObject {
     static let shared = AuthManager()
     @Published var isLoggedIn = false
-    @Published var isUsingBioLogin = false
+    @Published var isBioAuthenticated = false
     @Published var isRegistering = false
     
     
@@ -35,17 +35,23 @@ class AuthManager: ObservableObject {
         }
         return AuthModel(user:user)
     }
+    
+   
     //creates a new user
     func createUser(email:String, password: String) async throws -> AuthModel {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
+
         return AuthModel(user: result.user)
+        
         
     }
     
     //sign in existing usr
     func signIn(email:String, password: String) async throws -> AuthModel {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
+        
         return AuthModel(user: result.user)
+        
     }
     
     
@@ -65,11 +71,12 @@ class AuthManager: ObservableObject {
         }
     }
     
-    func setUsingBioLogin(usingBio: Bool) {
-        self.isUsingBioLogin=usingBio
+    func setIsBioAuthenticated(isBioAuthenticated: Bool) {
+        self.isBioAuthenticated=isBioAuthenticated
         
         
     }
+    
     
     func setIsRegistering(isRegistering: Bool) {
         self.isRegistering=isRegistering

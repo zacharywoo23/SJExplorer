@@ -46,11 +46,6 @@ struct LoginView: View {
             
         ZStack {
             
-            //May change accordingly depending on visbility on iphone
-            
-            //Gradient background
-            /*LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
-                .ignoresSafeArea()*/
             
             VStack(alignment: .center) {
                 Image(.logo).resizable().frame(width: 200, height: 200)
@@ -108,54 +103,17 @@ struct LoginView: View {
                         )
                     
                 }
-                /*NavigationLink(destination: SJExplorer()) {
-                 Text("Sign in")
-                 }
-                 .foregroundStyle(.white)
-                 .padding(10)
-                 .background(
-                 Capsule()
-                 .fill(Color.blue)
-                 )
-                 */
                 
-                Text("or")
-                /*
-                 Face ID sign in, take user to biometric page
-                 */
-                Button {
-                    authManager.setUsingBioLogin(usingBio: true)
-                    authManager.setIsRegistering(isRegistering: false)
-                    print(authManager.isUsingBioLogin)
-                } label: {
-                    Text("Use Face ID to sign in")
-                        .foregroundStyle(.white)
-                        .padding(10)
-                        .background(
-                            Rectangle()
-                                .fill(Color.secondary))
-                    
-                }
-                /*NavigationLink(destination: BiometricView()) {
-                            Text("Use Face ID to sign in")
-                        }
-                        .foregroundStyle(Å.white)
-                        .padding(10)
-                        .background(
-                            Rectangle()
-                                .fill(Color.secondary)
-                        )*/
-                        
-                    
+
                         Spacer().frame(height:fieldSpacing)
                         Text("Don't have an account?")
                         Spacer().frame(height:altSpacing)
                         
                         /*Button that takes the user to the register view*/
                 Button {
-                    authManager.setUsingBioLogin(usingBio: false)
+                    
                     authManager.setIsRegistering(isRegistering: true)
-                    print(authManager.isUsingBioLogin)
+                    
                 } label: {
                     Text("Sign Up")
                         .foregroundStyle(.white)

@@ -13,6 +13,8 @@ class RegisterViewModel: ObservableObject {
     @Published var email = ""
     @Published var password: String = ""
     
+    
+    
     enum RegistrationError: Error {
         case invalidCredentials
         case passwordTooShort
@@ -30,6 +32,7 @@ class RegisterViewModel: ObservableObject {
         
         
         let userData = try await AuthManager.shared.createUser(email: email, password: password)
+        
         print("Successful register")
         print(userData)
         
@@ -55,13 +58,7 @@ struct RegisterView: View {
     var body: some View {
         //NavigationView {
             ZStack {
-                //Gradient background
-                
-                /*LinearGradient(gradient: Gradient(colors: [Color(hex: 0x7c9cd4), .yellow]), startPoint: .center, endPoint: .bottomTrailing)
-                    .ignoresSafeArea()
-                */
-                
-                
+
                 VStack(alignment: .center) {
                     Image(.logo).resizable().frame(width: 200, height: 200)
                     
@@ -113,7 +110,7 @@ struct RegisterView: View {
                                     try await viewModel.register()
                                     authManager.isLoggedIn=true
                                     authManager.setIsRegistering(isRegistering: false)
-                                    authManager.setUsingBioLogin(usingBio: false)
+                                    
                                 } catch {
                                     print("Try again")
                                 }
@@ -146,7 +143,7 @@ struct RegisterView: View {
                      Take user to Login view
                      */
                     Button {
-                        authManager.setUsingBioLogin(usingBio:false)
+                        
                         authManager.setIsRegistering(isRegistering: false)
                     } label: {
                         Text("Sign In")

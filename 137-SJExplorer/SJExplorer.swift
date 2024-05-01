@@ -8,11 +8,13 @@ import SwiftUI
 import SwiftData
 
 
+
 struct SJExplorer: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
     @StateObject var authManager = AuthManager()
+    
     
 
     var body: some View {
@@ -24,38 +26,55 @@ struct SJExplorer: View {
                 VStack {
                     
                     
-                     //Default main view (show up when logged in)
+                    //Default main view (show up when logged in)
+                    
+                    //Get the user if one already logged in when starting up
                     
                     
-                    let user = try? authManager.getUser()
-                    
-                    if authManager.isLoggedIn {
-                        if user != nil {
-                            let username=user?.email
-                            Text("Signed in as \(username!)")
-                            Image(.logo).resizable().frame(width: 200, height: 200)
-                        }
-                         Spacer()
-                             .frame(height:40)
-                         Text("Welcome to SJExplorer")
-                         Spacer()
-                             .frame(height:40)
-                         Button("Start Playing") {
-                             
-                         }
-                         Spacer()
-                             .frame(height:40)
-                          Button("Sign Out"){
-                              authManager.signOut()
-                          }
-                          .foregroundStyle(.black)
+                     let user = try? authManager.getUser()
+                     
+                     if user != nil {
+                     
+                     if !authManager.isBioAuthenticated {
+                     BiometricView(authManager: authManager)
+                     } else {
+                     
+                     
+                     if user?.email != nil {
+                     let username=user?.email
+                     Text("Signed in as \(username!)")
                      }
-                     else if authManager.isUsingBioLogin {
-                     //take user to biometric view
-                     BiometricView(authManager: (authManager)
+                     Text("Welcome, Spartan")
+                     Image(.logo).resizable().frame(width: 200, height: 200)
+                     Spacer()
+                     .frame(height:40)
+                     Text("Welcome to SJExplorer")
+                     Spacer()
+                     .frame(height:40)
+                     
+                     //Not yet sure whether to use NavLink or set state for this
+                     
+                     /*Button("Start Playing") {
+                      
+                      }
+                      */
+                     
+                     NavigationLink(destination: SwiftUIView()) {
+                     Text("Start playing")
+                     }
+                     Spacer()
+                     .frame(height:40)
+                     Button("Sign Out"){
+                     authManager.signOut()
+                     }
+                     .foregroundStyle(.black)
+                     .padding(10)
+                     .background(
+                     Capsule()
+                     .fill(Color.blue)
                      )
-                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                     .transition(.move(edge: .leading))
+                     }
+                     
                      } else if authManager.isRegistering {
                      RegisterView(authManager: authManager)
                      
@@ -65,30 +84,49 @@ struct SJExplorer: View {
                      .frame(maxWidth: .infinity, maxHeight: .infinity)
                      .transition(.move(edge: .leading))
                      }
-                    
                      
+                     
+                    
+                    
                     //Preview for logged in screen - leave commented when not testing
-                    /*
-                    var username=NSUserName()
-                    Text("Logged in as \(username)")
+                     /*
+                    
+                    
+                    Text("Welcome, Spartan")
                     Image(.logo).resizable().frame(width: 200, height: 200)
                     Spacer()
                         .frame(height:40)
                     Text("Welcome to SJExplorer")
                     Spacer()
                         .frame(height:40)
-                    Button("Start Playing") {
-                        
+                    
+                    //Not yet sure whether to use NavLink or set state for this
+                    
+                    /*Button("Start Playing") {
+                     
+                     }
+                     */
+                    
+                    
+                    NavigationLink(destination: SwiftUIView()) {
+                        Text("zz")
                     }
                     Spacer()
                         .frame(height:40)
-                     Button("Sign Out"){
-                         authManager.signOut()
-                     }
-                     .foregroundStyle(.black)
+                    Button("Sign Out"){
+                        authManager.signOut()
+                    }
+                    .foregroundStyle(.black)
+                    .padding(10)
+                    .background(
+                        Capsule()
+                            .fill(Color.blue)
+                    )
+                    
+                 */
                      
                      
-                     */
+                     
                 }
                 
             }
