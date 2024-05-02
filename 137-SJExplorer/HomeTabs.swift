@@ -15,7 +15,7 @@ struct HomeTabs: View {
             
             TabView {
                 
-                Maps()
+                RequestLocation()
                     .tabItem {
                         Image(.logo).scaledToFit()
                     }

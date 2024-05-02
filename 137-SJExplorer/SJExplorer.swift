@@ -60,7 +60,7 @@ struct SJExplorer: View {
                                  }
                                  */
                                 
-                                NavigationLink(destination: HomeTabs()) {
+                                NavigationLink(destination: RequestLocation()) {
                                     Text("Start playing")
                                 }
                                 Spacer()
