@@ -6,65 +6,60 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct RequestLocation: View {
-    @ObservedObject var locationManager = LocationManager.shared
     let cBlue = Color(hex: 0x7C9CD4, alpha: 0.6)
     let cBlue2 = Color(hex: 0x7C9CD4, alpha: 1.0)
-    
     var body: some View {
-        if locationManager.userLocation == nil {
-            ZStack {
-                Color(cBlue).ignoresSafeArea()
+        ZStack {
+            Color(cBlue).ignoresSafeArea()
+            
+            VStack {
+                Spacer()
+                
+                Image(.logo).resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
+                    .padding(.bottom, 32)
+                
+                Text("Ready to play?").font(.system(size: 28, weight: .semibold))
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Text("Start sharing!").multilineTextAlignment(.center)
+                    .frame(width: 140)
+                    .padding()
+                
+                Spacer()
                 
                 VStack {
-                    Spacer()
-                    
-                    Image(.logo).resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-                        .padding(.bottom, 32)
-                    
-                    Text("Ready to play?").font(.system(size: 28, weight: .semibold))
-                        .multilineTextAlignment(.center)
-                        .padding()
-                    
-                    Text("Start sharing!").multilineTextAlignment(.center)
-                        .frame(width: 140)
-                        .padding()
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Button {
-                            LocationManager.shared.requestLocation()
-                        } label: {
-                            Text("Allow Location").padding()
-                                .font(.headline)
-                                .foregroundColor(Color(.systemBlue))
-                        }
-                        .frame(width: UIScreen.main.bounds.width)
-                        .padding(.horizontal, -32)
-                        .background(Color.white)
-                        .clipShape(Capsule())
-                        .padding()
-                        
-                        Button {
-                            print("Dismiss")
-                        } label: {
-                            Text("Maybe Later")
-                                .padding()
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
+                    Button {
+                        LocationManager.shared.requestLocation()
+                    } label: {
+                        Text("Allow Location").padding()
+                            .font(.headline)
+                            .foregroundColor(Color(.systemBlue))
                     }
-                    .padding(.bottom, 32)
+                    .frame(width: UIScreen.main.bounds.width)
+                    .padding(.horizontal, -32)
+                    .background(Color.white)
+                    .clipShape(Capsule())
+                    .padding()
                     
+                    Button {
+                        print("Dismiss")
+                    } label: {
+                        Text("Maybe Later")
+                            .padding()
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
                 }
-                .foregroundColor(.white)
+                .padding(.bottom, 32)
+                
             }
-        } else {
-            HomeTabs()
+            .foregroundColor(.white)
         }
     }
 }

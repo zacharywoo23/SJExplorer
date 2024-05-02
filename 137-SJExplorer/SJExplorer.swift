@@ -14,6 +14,7 @@ struct SJExplorer: View {
     @Query private var items: [Item]
     
     @StateObject var authManager = AuthManager()
+    @ObservedObject var locationManager = LocationManager.shared
     
 @ObservedObject var networkManager = NetworkMonitor()
 
@@ -60,7 +61,7 @@ struct SJExplorer: View {
                                  }
                                  */
                                 
-                                NavigationLink(destination: RequestLocation()) {
+                                NavigationLink(destination: HomeTabs()) {
                                     Text("Start playing")
                                 }
                                 Spacer()
