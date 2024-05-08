@@ -9,8 +9,11 @@
 
 import Foundation
 
-struct AuthAttributes {
-    static var shared = AuthAttributes()
+struct ViewAttributes {
+    static var shared = ViewAttributes()
+    
+    var viewWidth: CGFloat = 390
+    var viewHeight: CGFloat = 800
     
     //Attributes for aligning text fields
     var fieldWidth: CGFloat = 150

@@ -49,10 +49,10 @@ struct RegisterView: View {
     @StateObject private var viewModel=RegisterViewModel()
     @ObservedObject var authManager : AuthManager
     
-    var fieldSpacing = AuthAttributes.shared.fieldSpacing
-    var fieldWidth = AuthAttributes.shared.fieldWidth
-    var fieldHeight = AuthAttributes.shared.fieldHeight
-    var altSpacing = AuthAttributes.shared.altSpacing
+    var fieldSpacing = ViewAttributes.shared.fieldSpacing
+    var fieldWidth = ViewAttributes.shared.fieldWidth
+    var fieldHeight = ViewAttributes.shared.fieldHeight
+    var altSpacing = ViewAttributes.shared.altSpacing
     
     
     var body: some View {

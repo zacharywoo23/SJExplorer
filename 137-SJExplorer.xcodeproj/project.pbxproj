@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C144C8FF2BBFC4DC008066EA /* AuthAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144C8FA2BBFC4DC008066EA /* AuthAttributes.swift */; };
+		C144C8FF2BBFC4DC008066EA /* ViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144C8FA2BBFC4DC008066EA /* ViewAttributes.swift */; };
 		C144C9002BBFC4DC008066EA /* BiometricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144C8FB2BBFC4DC008066EA /* BiometricView.swift */; };
 		C144C9012BBFC4DC008066EA /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144C8FC2BBFC4DC008066EA /* Login.swift */; };
 		C144C9022BBFC4DC008066EA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144C8FD2BBFC4DC008066EA /* RegisterView.swift */; };
@@ -17,6 +17,8 @@
 		C144C90B2BBFCBB3008066EA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C144C90A2BBFCBB3008066EA /* FirebaseFirestore */; };
 		C144C90D2BBFCBB3008066EA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C144C90C2BBFCBB3008066EA /* FirebaseFirestoreSwift */; };
 		C16DCE602BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C16DCE5F2BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist */; };
+		C177D7982BEB19A7007C42AE /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C177D7972BEB19A7007C42AE /* ScoreView.swift */; };
+		C177D79A2BEB20E4007C42AE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C177D7992BEB20E4007C42AE /* Settings.swift */; };
 		C19A24652BC77C6500C03F90 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19A24642BC77C6500C03F90 /* AuthManager.swift */; };
 		C19A24672BC7CEBC00C03F90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19A24662BC7CEBC00C03F90 /* GoogleService-Info.plist */; };
 		CE4B57C42BA4AD4E00784513 /* _37_SJExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57C32BA4AD4E00784513 /* _37_SJExplorerApp.swift */; };
@@ -54,11 +56,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C144C8FA2BBFC4DC008066EA /* AuthAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAttributes.swift; sourceTree = "<group>"; };
+		C144C8FA2BBFC4DC008066EA /* ViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAttributes.swift; sourceTree = "<group>"; };
 		C144C8FB2BBFC4DC008066EA /* BiometricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricView.swift; sourceTree = "<group>"; };
 		C144C8FC2BBFC4DC008066EA /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C144C8FD2BBFC4DC008066EA /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		C16DCE5F2BD7E16D00A2FB8C /* -37-SJExplorer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "-37-SJExplorer-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C177D7972BEB19A7007C42AE /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		C177D7992BEB20E4007C42AE /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C19A24642BC77C6500C03F90 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C19A24662BC7CEBC00C03F90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE4B57C02BA4AD4E00784513 /* 137-SJExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "137-SJExplorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +118,7 @@
 		C144C8FE2BBFC4DC008066EA /* LoginRegister */ = {
 			isa = PBXGroup;
 			children = (
-				C144C8FA2BBFC4DC008066EA /* AuthAttributes.swift */,
+				C144C8FA2BBFC4DC008066EA /* ViewAttributes.swift */,
 				C144C8FB2BBFC4DC008066EA /* BiometricView.swift */,
 				C144C8FC2BBFC4DC008066EA /* Login.swift */,
 				C144C8FD2BBFC4DC008066EA /* RegisterView.swift */,
@@ -158,6 +162,8 @@
 				D869632A2BD9C50B001162F8 /* Location */,
 				D869633B2BE2FAE1001162F8 /* HomeTabs.swift */,
 				D86963472BE350A6001162F8 /* Offline */,
+				C177D7972BEB19A7007C42AE /* ScoreView.swift */,
+				C177D7992BEB20E4007C42AE /* Settings.swift */,
 			);
 			path = "137-SJExplorer";
 			sourceTree = "<group>";
@@ -357,9 +363,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C144C9002BBFC4DC008066EA /* BiometricView.swift in Sources */,
+				C177D7982BEB19A7007C42AE /* ScoreView.swift in Sources */,
 				D86963292BD9C2B7001162F8 /* NetworkMonitor.swift in Sources */,
+				C177D79A2BEB20E4007C42AE /* Settings.swift in Sources */,
 				CE4B57C62BA4AD4E00784513 /* SJExplorer.swift in Sources */,
-				C144C8FF2BBFC4DC008066EA /* AuthAttributes.swift in Sources */,
+				C144C8FF2BBFC4DC008066EA /* ViewAttributes.swift in Sources */,
 				CE4B57C82BA4AD4E00784513 /* Item.swift in Sources */,
 				C144C9022BBFC4DC008066EA /* RegisterView.swift in Sources */,
 				D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */,
