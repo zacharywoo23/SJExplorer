@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct Settings: View {
+    @StateObject var authManager = AuthManager()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Sign Out"){
+        authManager.signOut()
+        }
+        .foregroundStyle(.black)
+        .padding(10)
+        .background(
+        Capsule()
+        .fill(Color.blue)
+        )
     }
 }
 

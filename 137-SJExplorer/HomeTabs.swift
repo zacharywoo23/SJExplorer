@@ -20,6 +20,16 @@ struct HomeTabs: View {
                         Image(.logo).scaledToFit()
                     }
                     .toolbarBackground(cBlue, for: .tabBar)
+                MainPageView()
+                    //.badge("!")
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                            
+                    }
+                Settings()
+                    .tabItem {
+                        Label("Account", systemImage: "person.crop.circle.fill")
+                    }
             }
 
         }
