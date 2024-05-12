@@ -8,7 +8,9 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import LocalAuthentication
 import SwiftUI
+import UserNotifications
 
 struct AuthModel {
     let uid:String
@@ -24,10 +26,14 @@ class AuthManager: ObservableObject {
     @Published var isLoggedIn = false
     @Published var isBioAuthenticated = false
     @Published var isRegistering = false
+    @Published var notificationsOn = false
+    private var authStateHandle: AuthStateDidChangeListenerHandle?
     
-    
-    
-    init() {}
+    init() {
+        authStateHandle = Auth.auth().addStateDidChangeListener { _, user in
+            self.isLoggedIn = user != nil
+        }
+    }
     //gets the current user if logged in
     func getUser() throws -> AuthModel {
         guard let user = Auth.auth().currentUser else {
@@ -40,7 +46,7 @@ class AuthManager: ObservableObject {
     //creates a new user
     func createUser(email:String, password: String) async throws -> AuthModel {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
-
+        
         return AuthModel(user: result.user)
         
         
@@ -54,10 +60,38 @@ class AuthManager: ObservableObject {
         
     }
     
+    //Biometric authentication leads to login
+    func authenticate() {
+        let context=LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "security") { success, authenticationError in
+                
+                if success {
+                    
+                    DispatchQueue.main.async {
+                        self.setIsBioAuthenticated(isBioAuthenticated: true)
+                        
+                        
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        
+                        print("failed to authenticate")
+                    }                }
+                
+            }
+            //If user isn't enrolled in face ID
+        } else {
+            print("no face id on this device")
+        }
+        
+    }
     
     
-    
-    
+
     //sign out the user
     func signOut() {
         do {
@@ -68,6 +102,19 @@ class AuthManager: ObservableObject {
         } catch let signOutError as NSError {
             
             print("Error signing out: ", signOutError)
+        }
+    }
+    
+    //Delete the current user
+    func deleteAccount(){
+        let user = Auth.auth().currentUser
+
+        user?.delete { error in
+          if let error = error {
+            // An error happened.
+          } else {
+            // Account deleted.
+          }
         }
     }
     

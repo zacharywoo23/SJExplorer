@@ -7,22 +7,28 @@
 
 import SwiftUI
 
+
+
 struct MainPageView: View {
     
     
     var body: some View {
         GeometryReader { geo in
             ScrollView {
-            ZStack {
                 
-                VStack {
-                    Image(.logo).resizable().frame(width: 100, height: 100)
-                    Spacer()
-                    RoundedRectangle(cornerRadius: 30)
-                        .frame(width: geo.size.width, height: geo.size.height*2/3)
-                        .padding(10)
-                        .position(x:geo.size.width/2, y:geo.size.height/3)
-                        .foregroundColor(Color(hex: 0xdfa00a))
+                ZStack {
+                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0xd4b47c), Color(hex: 0x7c9cd4), Color(hex: 0x4a5d7f)]), startPoint: .trailing, endPoint: .bottomTrailing)
+                        .frame(width: geo.size.width, height: geo.size.height) // Extend the gradient to cover the whole screen
+                        .ignoresSafeArea()
+                        .position(x:geo.size.width/2, y: geo.size.height/2)
+                    VStack {
+                        Image(.logo).resizable().frame(width: 100, height: 100)
+                        
+                        RoundedRectangle(cornerRadius: 30)
+                            .frame(width: geo.size.width, height: geo.size.height*2/3)
+                            .padding(10)
+                            .position(x:geo.size.width/2, y:geo.size.height/3)
+                            .foregroundColor(Color(hex: 0xdfa00a))
                 }
                 
                     Text("  Home")
@@ -36,8 +42,7 @@ struct MainPageView: View {
                         .position(x:geo.size.width/2, y:geo.size.height/6)
                     
                     VStack{
-                        Spacer()
-                            .frame(height:100)
+                        
                         NavigationLink(destination: Maps()) {
                             Label("Explore", systemImage: "map")
                         }

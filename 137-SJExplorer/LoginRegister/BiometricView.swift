@@ -1,8 +1,10 @@
 //
-//  SwiftUIView.swift
+//  BiometricView.swift
 //  137-SJExplorer
 //
 //  Created by Dennis Shih on 3/26/24.
+
+
 //
 
 import SwiftUI
@@ -33,7 +35,7 @@ struct BiometricView: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     Button("Authenticate") {
-                        authenticate()
+                        authManager.authenticate()
                     }
                     Spacer()
                     .frame(height: 50)
@@ -53,34 +55,7 @@ struct BiometricView: View {
         }
     }
     
-    func authenticate() {
-        let context=LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "security") { success, authenticationError in
-                
-                if success {
-                    DispatchQueue.main.async {
-                        authManager.setIsBioAuthenticated(isBioAuthenticated: true)
-                        text = "Unlocked"
-                        unlocked = true
-                        
-                    }
-                    
-                } else {
-                    DispatchQueue.main.async {
-                        
-                        text = "Failed"
-                    }                }
-                
-            }
-            //If user isn't enrolled in face ID
-        } else {
-            print("no face id on this device")
-        }
-        
-    }
+    
 }
 /*
 #Preview {

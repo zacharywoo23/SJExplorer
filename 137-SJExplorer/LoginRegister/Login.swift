@@ -23,12 +23,17 @@ class LoginViewModel: ObservableObject {
             throw LoginError.invalidCredentials
         }
         
-                let userData = try await AuthManager.shared.signIn(email: email, password: password)
-                
-                print("Successful login")
-                print(userData)
-            } 
-       
+        
+        
+        let userData = try await AuthManager.shared.signIn(email: email, password: password)
+        
+        
+        
+        
+        print("Successful login")
+        print(userData)
+    }
+    
 }
 
 struct LoginView: View {
@@ -83,6 +88,8 @@ struct LoginView: View {
                  
                  */
                 Button {
+                    
+                    
                     Task {
                         do {
                             try await viewModel.signIn()
@@ -124,15 +131,7 @@ struct LoginView: View {
                         )
                     
                 }
-                        /*NavigationLink(destination: RegisterView()) {
-                            Text("Sign Up")
-                        }
-                        .foregroundStyle(.white)
-                        .padding(10)
-                        .background(
-                            Capsule()
-                                .fill(Color.blue)
-                        )*/
+                     
                    
                     
                 }
