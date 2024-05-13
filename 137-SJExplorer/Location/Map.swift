@@ -16,16 +16,15 @@ struct Maps: View {
     @ObservedObject var locationManager = LocationManager.shared
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
     
-    @State var selected: MKMapItem?
     @State var selec: Int?
-    @State private var showDetails = false
+    @State var showDetails = false
     
     var body: some View {
         Group {
             if locationManager.userLocation == nil {
                 RequestLocation()
             } else {
-                Map(position: $cameraPosition, selection: $selected) {
+                Map(position: $cameraPosition, selection: $selec) {
                     Annotation("MLK Library", coordinate: .mlkLib) {
                         ZStack{
                             Image(.mlkPic)
@@ -78,7 +77,16 @@ struct Maps: View {
                     MapCompass()
                     MapPitchToggle()
                     MapUserLocationButton()
+                    
                 }
+                .onChange(of: selec, { oldValue, newValue in showDetails = newValue != nil
+                })
+                .sheet(isPresented: $showDetails, content: {
+                    GameDetails(gameSelect: $selec, show: $showDetails)
+                        .presentationDetents([.height(340)])
+                        .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                        .presentationCornerRadius(12)
+                })
             }
         }
     }
@@ -108,6 +116,18 @@ extension MKCoordinateRegion {
     }
 }
 
+
+class CustomAnnotation: NSObject, MKAnnotation {
+    let title: String?
+    let subtitle: String?
+    let coordinate: CLLocationCoordinate2D
+
+    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+    }
+}
 
 #Preview {
     Maps()

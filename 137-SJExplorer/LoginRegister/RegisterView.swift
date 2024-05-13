@@ -7,11 +7,13 @@
 
 import SwiftUI
 import FirebaseAuth
-
+import FirebaseFirestore
 
 class RegisterViewModel: ObservableObject {
+    @Published var name: String = ""
     @Published var email = ""
     @Published var password: String = ""
+    
     
     
     
@@ -32,6 +34,23 @@ class RegisterViewModel: ObservableObject {
         
         
         let userData = try await AuthManager.shared.createUser(email: email, password: password)
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            // User is not logged in
+            return
+        }
+        let db = Firestore.firestore()
+        let userDocRef = db.collection("users").document(currentUser.uid)
+        
+        //Add username to the collection
+        userDocRef.setData(["username": name], merge: true) { error in
+            if let error = error {
+                print("Error updating document: \(error.localizedDescription)")
+            } else {
+                print("Document updated successfully with username: \(self.name)")
+            }
+        }
+
         
         print("Successful register")
         print(userData)
@@ -63,7 +82,19 @@ struct RegisterView: View {
                     Image(.logo).resizable().frame(width: 200, height: 200)
                     
                     Text("Sign Up").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    //Sign in fields
+                    //Register fields
+                    
+                    TextField("Userame", text: $viewModel.name).foregroundStyle(.black)
+                    
+                        .autocorrectionDisabled(true)
+#if !os(macOS)
+                        .textInputAutocapitalization(.never)
+#endif
+                        .frame(width: fieldWidth, height: fieldHeight)
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
+                    
+                    
+                    Spacer().frame(height:fieldSpacing)
                     TextField("Email", text: $viewModel.email).foregroundStyle(.black)
                     
                         .autocorrectionDisabled(true)

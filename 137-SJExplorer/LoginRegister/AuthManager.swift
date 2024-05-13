@@ -108,6 +108,15 @@ class AuthManager: ObservableObject {
     //Delete the current user
     func deleteAccount(){
         let user = Auth.auth().currentUser
+        let db = Firestore.firestore()
+        let ref = db.collection("users").document(user!.uid)
+        ref.delete { error in
+            if let error = error {
+                print("Error deleting document: \(error.localizedDescription)")
+            } else {
+                print("Document deleted successfully")
+            }
+        }
 
         user?.delete { error in
           if let error = error {
@@ -117,6 +126,31 @@ class AuthManager: ObservableObject {
           }
         }
     }
+    
+    func createNotification(title: String, body: String, date: Date) {
+            // Create the notification content
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = body
+            content.sound = UNNotificationSound.default
+
+            // Create a trigger for the notification
+            let calendar = Calendar.current
+            let triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+
+            // Create the request for the notification
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+            // Add the request to the notification center
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error scheduling notification: \(error.localizedDescription)")
+                } else {
+                    print("Notification scheduled successfully.")
+                }
+            }
+        }
     
     func setIsBioAuthenticated(isBioAuthenticated: Bool) {
         self.isBioAuthenticated=isBioAuthenticated

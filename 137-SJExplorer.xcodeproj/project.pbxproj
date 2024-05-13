@@ -30,6 +30,7 @@
 		CE4B57D72BA4AD5400784513 /* _37_SJExplorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57D62BA4AD5400784513 /* _37_SJExplorerTests.swift */; };
 		CE4B57E12BA4AD5400784513 /* _37_SJExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */; };
 		CE4B57E32BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */; };
+		D816A2EE2BF30E44000A0524 /* GameDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816A2ED2BF30E44000A0524 /* GameDetails.swift */; };
 		D86963292BD9C2B7001162F8 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */; };
 		D869633C2BE2FAE1001162F8 /* HomeTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869633B2BE2FAE1001162F8 /* HomeTabs.swift */; };
 		D86963442BE34993001162F8 /* NoWifi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86963432BE34993001162F8 /* NoWifi.swift */; };
@@ -78,6 +79,7 @@
 		CE4B57DC2BA4AD5400784513 /* 137-SJExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "137-SJExplorerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4B57E02BA4AD5400784513 /* _37_SJExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITests.swift; sourceTree = "<group>"; };
 		CE4B57E22BA4AD5400784513 /* _37_SJExplorerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _37_SJExplorerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D816A2ED2BF30E44000A0524 /* GameDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetails.swift; sourceTree = "<group>"; };
 		D86963282BD9C2B7001162F8 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		D869633B2BE2FAE1001162F8 /* HomeTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabs.swift; sourceTree = "<group>"; };
 		D86963432BE34993001162F8 /* NoWifi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoWifi.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				CE4B57D52BA4AD5400784513 /* 137-SJExplorerTests */,
 				CE4B57DF2BA4AD5400784513 /* 137-SJExplorerUITests */,
 				CE4B57C12BA4AD4E00784513 /* Products */,
+				D816A2E72BF2F959000A0524 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,12 +199,20 @@
 			path = "137-SJExplorerUITests";
 			sourceTree = "<group>";
 		};
+		D816A2E72BF2F959000A0524 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D869632A2BD9C50B001162F8 /* Location */ = {
 			isa = PBXGroup;
 			children = (
 				D8DEDE252BBE92FA00161AD5 /* Map.swift */,
 				D8DEDE272BBE991200161AD5 /* RequestLocation.swift */,
 				D8DEDE292BBE995400161AD5 /* LocationManager.swift */,
+				D816A2ED2BF30E44000A0524 /* GameDetails.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -376,6 +387,7 @@
 				C1AB21A32BEF850000A765BF /* MainPageView.swift in Sources */,
 				D8DEDE2A2BBE995400161AD5 /* LocationManager.swift in Sources */,
 				D8DEDE282BBE991200161AD5 /* RequestLocation.swift in Sources */,
+				D816A2EE2BF30E44000A0524 /* GameDetails.swift in Sources */,
 				D86963462BE34D13001162F8 /* OfflineMode.swift in Sources */,
 				D869633C2BE2FAE1001162F8 /* HomeTabs.swift in Sources */,
 				C144C9012BBFC4DC008066EA /* Login.swift in Sources */,
