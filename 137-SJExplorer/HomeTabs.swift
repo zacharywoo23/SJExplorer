@@ -16,22 +16,25 @@ struct HomeTabs: View {
             
             TabView {
                 
-                Maps()
-                    .tabItem {
-                        Image(.logo).scaledToFit()
-                    }
-                    .toolbarBackground(cBlue, for: .tabBar)
-                
                 MainPageView()
                     //.badge("!")
                     .tabItem {
                         Label("Home", systemImage: "house")
                             
                     }
-                Settings()
+                
+                Maps()
+                    .tabItem {
+                        Image(.logo).scaledToFit()
+                    }
+                    .toolbarBackground(cBlue, for: .tabBar)
+                
+                
+                AccountView()
                     .tabItem {
                         Label("Account", systemImage: "person.crop.circle.fill")
                     }
+            
             }
 
         }

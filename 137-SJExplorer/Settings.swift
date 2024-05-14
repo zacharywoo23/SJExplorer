@@ -2,7 +2,9 @@
 //  Settings.swift
 //  137-SJExplorer
 //
-//  Created by Dennis Shih on 5/7/24.
+//  Created by Dennis Shih
+
+//The settings page view.
 //
 
 import SwiftUI
@@ -13,6 +15,8 @@ struct Settings: View {
     @State private var connectivity = false
     @State private var showingAlert = false
     @State private var notifyPermission = false
+    
+    
 
     var body: some View {
         ZStack {
@@ -41,32 +45,36 @@ struct Settings: View {
                     .bold()
                 
                 
-                Toggle(isOn: self.$connectivity) {
-                    Label("Internet connection", systemImage: "wifi")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
-                .frame(width:200, height:50)
-                
-                
-                
                 Spacer()
                     .frame(height:50)
-                Button("Notifications"){
-                    //if !notifyPermission {
-                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge,.sound]) {
-                            success, error in
-                            if success {
-                                notifyPermission=true
-                                print("all set")
-                            } else if let error {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    //} else {
-                        
+                
+                
+                NavigationLink {
+                    SetNotificationView()
+                } label: {
+                    Label("Set Notification", systemImage: "bell")
                 }
+
+                /*
                 Button("Set"){
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge,.sound]) {
+                        success, error in
+                        if success {
+                            notifyPermission=true
+                            print("all set")
+                        } else if let error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                    }
                     let content = UNMutableNotificationContent()
+                    
+                    var dateComponents = DateComponents()
+                    dateComponents.calendar = Calendar.current
+
+                    //
+                    dateComponents.weekday = 3
+                    dateComponents.hour = 14
                     content.title = "test"
                     content.subtitle = "test"
                     content.sound = UNNotificationSound.default
@@ -74,7 +82,8 @@ struct Settings: View {
                     let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                     UNUserNotificationCenter.current().add(request)
                 }
-            
+                 */
+                
                 
                 .foregroundStyle(.black)
                 .padding(10)
@@ -88,7 +97,7 @@ struct Settings: View {
                     authManager.signOut()
                     
                 }
-               
+                
                 .foregroundStyle(.black)
                 .padding(10)
                 .background(
@@ -111,13 +120,15 @@ struct Settings: View {
             }
             .padding()
             .alert(isPresented: $showingAlert) {
-                            Alert(title: Text("Warning"), message: Text("Are you sure you want to delete your account? This action cannot be undone."), primaryButton: .destructive(Text("Delete"), action: {
-                                
-                                authManager.deleteAccount()
-                            }), secondaryButton: .cancel())
-                        }
+                Alert(title: Text("Warning"), message: Text("Are you sure you want to delete your account? This action cannot be undone."), primaryButton: .destructive(Text("Delete"), action: {
+                    
+                    authManager.deleteAccount()
+                }), secondaryButton: .cancel())
+            }
+            
         }
     }
+   
 }
 
 #Preview {

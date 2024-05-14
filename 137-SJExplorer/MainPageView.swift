@@ -29,6 +29,12 @@ struct MainPageView: View {
                             .padding(10)
                             .position(x:geo.size.width/2, y:geo.size.height/3)
                             .foregroundColor(Color(hex: 0xdfa00a))
+                        
+                        RoundedRectangle(cornerRadius: 30)
+                            .frame(width: geo.size.width, height: geo.size.height/2)
+                            .padding(10)
+                            .position(x:geo.size.width/2, y:geo.size.height*2/5)
+                            .foregroundColor(Color(hex: 0xdfa00a))
                 }
                 
                     Text("  Home")
@@ -42,7 +48,6 @@ struct MainPageView: View {
                         .position(x:geo.size.width/2, y:geo.size.height/6)
                     
                     VStack{
-                        
                         NavigationLink(destination: Maps()) {
                             Label("Explore", systemImage: "map")
                         }
@@ -52,7 +57,6 @@ struct MainPageView: View {
                         .padding(10)
                         .background(
                             Color.blue)
-                        
                         
                         Spacer()
                             .frame(height:50)
@@ -92,17 +96,26 @@ struct MainPageView: View {
                         .padding(10)
                         .background(
                             Color.blue)
+                        Spacer()
+                            .frame(height:150)
                         
-                        
-                        
-                        
-                        
-                        
-                        //move to settings page
-                        /*
-                         
-                         */
+                        Image(.bird).resizable()
+                            .frame(width: 50, height: 50)
+                        Text("FlappySpartan")
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        Button("Play") {
+                            
+                        }
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .frame(width: geo.size.width*3/4)
+                        .foregroundStyle(.black)
+                        .padding(10)
+                        .background(
+                            Capsule()
+                                .fill(Color.blue))
+
                     }
+                    .position(x:geo.size.width/2, y:geo.size.height*5/7)
                 }
             }
         }

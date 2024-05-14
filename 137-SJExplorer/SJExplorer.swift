@@ -44,10 +44,6 @@ struct SJExplorer: View {
                                 BiometricView(authManager: authManager)
                             } else {
                                 
-                                if user?.email != nil {
-                                    let username=user?.email
-                                    Text("Signed in as \(username!)")
-                                }
                                 
                                 HomeTabs()
                                 
