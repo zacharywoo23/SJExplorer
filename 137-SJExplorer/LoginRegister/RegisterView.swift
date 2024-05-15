@@ -118,7 +118,7 @@ struct RegisterView: View {
                         .frame(width: fieldWidth, height: fieldHeight)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
                     Spacer().frame(height:fieldSpacing)
-                    Text("Password should contain at least 6 characters including at least 1 number.")
+                    Text("Password should contain at least 6 characters")
                     Button(action: {
                         isChecked.toggle()
                     }) {

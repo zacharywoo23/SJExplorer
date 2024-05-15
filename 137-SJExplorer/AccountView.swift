@@ -12,7 +12,9 @@ import FirebaseAuth
 struct AccountView: View {
 
     @State var username: String = "Please wait..."
-         
+    var numFriends = 0
+    let user = Auth.auth().currentUser
+    let db = Firestore.firestore()
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -34,20 +36,25 @@ struct AccountView: View {
                     
                 }
                 VStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+                    Text("Your account")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .bold()
+                        .underline()
+                        .position(x:geo.size.width/2, y:geo.size.width*2/5)
                     Text(username)
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .bold()
-                        .position(x:geo.size.width/2, y:geo.size.width/2)
+                        .position(x:geo.size.width/2, y:-geo.size.height/15)
                     //show user email
                     HStack {
-                        let user = Auth.auth().currentUser
+                        Text("Email: ")
                         if user?.email != nil {
                             let email=user?.email
-                            Text("Email:\(email!)")
+                            Text("\(email!)")
                         }
                     }
-                    .position(x:geo.size.width/2, y:-100)
-                    
+                    .position(x:geo.size.width/2, y:-geo.size.height/3)
+                   
                     
                     
                     
@@ -56,6 +63,7 @@ struct AccountView: View {
                     Task{
                         let result = await setUsername()
                     }
+                    
                 }
                 
             }
@@ -77,13 +85,13 @@ struct AccountView: View {
                             if let username = document.data()?["username"] as? String {
                                 self.username = username
                             } else {
-                                print("Username not found in document data")
+                                print("Username not found")
                             }
                         } else {
-                            print("Document does not exist")
+                            print("Document doesnt exist")
                         }
                     } catch {
-                        print("Error getting document: \(error)")
+                        print("\(error)")
                     }
             } else {
                 print("User is not signed in.")

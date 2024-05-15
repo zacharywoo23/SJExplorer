@@ -59,20 +59,7 @@ struct MainPageView: View {
                         .background(
                             Color.blue)
                         
-                        Spacer()
-                            .frame(height:50)
-                        NavigationLink(destination: ScoreView()) {
-                            Label("Scores", systemImage: "chart.bar.fill")
-                        }
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .frame(width: geo.size.width)
-                        .foregroundStyle(.black)
-                        .padding(10)
-                        .background(
-                            Color.blue)
-                        
-                        
-                        
+                      
                         Spacer()
                             .frame(height:50)
                         NavigationLink(destination: FriendsView()) {

@@ -34,7 +34,8 @@ struct FriendsView: View {
                     
                 }
                 VStack {
-                    
+                    Spacer()
+                        .frame(height:20)
                     Text("Friends")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .bold()

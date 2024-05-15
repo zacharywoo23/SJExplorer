@@ -78,7 +78,7 @@ struct Settings: View {
                         .fill(Color.blue)
                 )
                 Spacer()
-                    .frame(height:200)
+                    .frame(height:260)
                 Button("DELETE ACCOUNT"){
                     showingAlert = true
                 }

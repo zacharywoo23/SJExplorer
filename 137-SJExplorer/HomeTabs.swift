@@ -25,7 +25,7 @@ struct HomeTabs: View {
                 
                 Maps()
                     .tabItem {
-                        Image(.logo).scaledToFit()
+                        Image(.logo1).scaledToFit()
                     }
                     .toolbarBackground(cBlue, for: .tabBar)
                 
