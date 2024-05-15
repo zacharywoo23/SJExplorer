@@ -27,6 +27,7 @@ class AuthManager: ObservableObject {
     @Published var isBioAuthenticated = false
     @Published var isRegistering = false
     @Published var notificationsOn = false
+    var failNum = 0
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     
     init() {
@@ -76,12 +77,18 @@ class AuthManager: ObservableObject {
                         
                     }
                     
-                } else {
+                } else if (authenticationError != nil) {
                     DispatchQueue.main.async {
                         
-                        print("failed to authenticate")
-                        self.signOut()
-                    }                }
+                        
+                        self.failNum+=1
+                        if (self.failNum>1) {
+                            self.signOut()
+                            self.failNum=0
+                        }
+                        //
+                    }
+                }
                 
             }
             //If user isn't enrolled in face ID
@@ -98,7 +105,7 @@ class AuthManager: ObservableObject {
         do {
             print("Signed out user ", Auth.auth().currentUser?.email)
             try Auth.auth().signOut()
-            
+            self.failNum=0
             self.isLoggedIn = false
             self.isBioAuthenticated=false
         } catch let signOutError as NSError {

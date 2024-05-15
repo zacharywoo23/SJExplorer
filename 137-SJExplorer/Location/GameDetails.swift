@@ -66,7 +66,7 @@ struct GameDetails: View {
                     Label("Play", systemImage: "map")
                 }
                 */
-                Button("play"){
+                Button("Play"){
                     if let url = URL(string: "clickgame://") {
                         
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)    

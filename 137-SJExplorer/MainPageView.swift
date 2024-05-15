@@ -2,7 +2,8 @@
 //  MainPageView.swift
 //  137-SJExplorer
 //
-//  Created by Dennis Shih on 5/11/24.
+//  Created by Dennis Shih
+//Main view
 //
 
 import SwiftUI
