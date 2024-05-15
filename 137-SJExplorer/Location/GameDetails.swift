@@ -61,8 +61,16 @@ struct GameDetails: View {
             }
             
             if (gameSelect == 1) {
+                /*
                 NavigationLink(destination: Settings()) {
                     Label("Play", systemImage: "map")
+                }
+                */
+                Button("play"){
+                    if let url = URL(string: "clickgame://") {
+                        
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)    
+                    }
                 }
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .foregroundStyle(.black)

@@ -104,7 +104,11 @@ struct MainPageView: View {
                         Text("FlappySpartan")
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         Button("Play") {
-                            
+                            if let url = URL(string: "unitygame://") {
+                                
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                
+                            }
                         }
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .frame(width: geo.size.width*3/4)
