@@ -50,6 +50,13 @@ class RegisterViewModel: ObservableObject {
                 print("Document updated successfully with username: \(self.name)")
             }
         }
+        userDocRef.setData(["email": email], merge: true) { error in
+            if let error = error {
+                print("Error updating document: \(error.localizedDescription)")
+            } else {
+                print("Document updated successfully with email: \(self.email)")
+            }
+        }
 
         
         print("Successful register")
@@ -141,6 +148,7 @@ struct RegisterView: View {
                                     try await viewModel.register()
                                     authManager.isLoggedIn=true
                                     authManager.setIsRegistering(isRegistering: false)
+                                    authManager.authenticate()
                                     
                                 } catch {
                                     print("Try again")
@@ -159,14 +167,7 @@ struct RegisterView: View {
                             )
                     
                     }
-                    
-                   
-                    
-                   
-                    
-                    
-                    
-                    
+  
                     Spacer().frame(height: fieldSpacing)
                     Text("Already have an account?")
                     Spacer().frame(height: altSpacing)
@@ -186,24 +187,10 @@ struct RegisterView: View {
                             )
                     
                     }
-                    /*NavigationLink(destination: LoginView(authManager: authManager)) {
-                        Text("Sign In")
-                    }
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .background(
-                        Capsule()
-                            .fill(Color.blue)
-                    )*/
-                    
-                    
-                    
-                    
+ 
                 }
             }
-            
-            
-        //}
+
     }
     
     

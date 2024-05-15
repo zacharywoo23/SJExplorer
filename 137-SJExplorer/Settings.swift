@@ -55,34 +55,7 @@ struct Settings: View {
                     Label("Set Notification", systemImage: "bell")
                 }
 
-                /*
-                Button("Set"){
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge,.sound]) {
-                        success, error in
-                        if success {
-                            notifyPermission=true
-                            print("all set")
-                        } else if let error {
-                            print(error.localizedDescription)
-                            return
-                        }
-                    }
-                    let content = UNMutableNotificationContent()
-                    
-                    var dateComponents = DateComponents()
-                    dateComponents.calendar = Calendar.current
-
-                    //
-                    dateComponents.weekday = 3
-                    dateComponents.hour = 14
-                    content.title = "test"
-                    content.subtitle = "test"
-                    content.sound = UNNotificationSound.default
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                    UNUserNotificationCenter.current().add(request)
-                }
-                 */
+               
                 
                 
                 .foregroundStyle(.black)

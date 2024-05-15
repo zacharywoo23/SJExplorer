@@ -80,6 +80,7 @@ class AuthManager: ObservableObject {
                     DispatchQueue.main.async {
                         
                         print("failed to authenticate")
+                        self.signOut()
                     }                }
                 
             }
@@ -98,7 +99,8 @@ class AuthManager: ObservableObject {
             print("Signed out user ", Auth.auth().currentUser?.email)
             try Auth.auth().signOut()
             
-            isLoggedIn = false
+            self.isLoggedIn = false
+            self.isBioAuthenticated=false
         } catch let signOutError as NSError {
             
             print("Error signing out: ", signOutError)
@@ -115,6 +117,8 @@ class AuthManager: ObservableObject {
                 print("Error deleting document: \(error.localizedDescription)")
             } else {
                 print("Document deleted successfully")
+                self.isLoggedIn = false
+                self.isBioAuthenticated=false
             }
         }
 

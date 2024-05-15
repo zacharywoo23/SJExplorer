@@ -36,7 +36,17 @@ struct HomeTabs: View {
                     }
             
             }
+            
 
+        }
+        .onAppear{
+            if !AuthManager.shared.isBioAuthenticated
+            {
+                AuthManager.shared.authenticate()
+                
+                
+            }
+            
         }
     }
 }

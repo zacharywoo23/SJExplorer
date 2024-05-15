@@ -11,7 +11,7 @@ import SwiftUI
 
 struct MainPageView: View {
     
-    
+    //@ObservedObject var authManager : AuthManager
     var body: some View {
         GeometryReader { geo in
             ScrollView {
@@ -74,7 +74,7 @@ struct MainPageView: View {
                         
                         Spacer()
                             .frame(height:50)
-                        NavigationLink(destination: HomeTabs()) {
+                        NavigationLink(destination: FriendsView()) {
                             Label("Friends", systemImage: "person.3.fill")
                         }
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -117,15 +117,18 @@ struct MainPageView: View {
                         .background(
                             Capsule()
                                 .fill(Color.blue))
-
+                        
                     }
                     .position(x:geo.size.width/2, y:geo.size.height*5/7)
                 }
+                
             }
         }
     }
+    
 }
 
-#Preview {
+
+    #Preview {
     MainPageView()
 }

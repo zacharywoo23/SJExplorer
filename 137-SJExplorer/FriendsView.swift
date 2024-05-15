@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct FriendsView: View {
     var body: some View {
@@ -25,21 +26,55 @@ struct FriendsView: View {
                         .foregroundColor(Color(hex: 0x7C91aa))
                         .position(x:geo.size.width/2, y:geo.size.width/2)
                     
+                    
                 }
                 VStack {
                     
                     Text("Friends")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .bold()
+                    
+                    
+                    Spacer()
+                        .frame(height:200)
                     
                 }
-                
-                
-                
-               
                 
             }
         }
         // let userDocRef = db.collection("users").document(currentUser.uid)
+    }
+    func addFriendToUser(email: String, friendID: String) {
+        let db = Firestore.firestore()
+        
+        // Get the user document based on the email
+        db.collection("users").whereField("email", isEqualTo: email)
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                    return
+                }
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+                for document in documents {
+                    var data = document.data()
+                    var friends = data["friends"] as? [String] ?? [String]()
+                    friends.append(friendID)
+                    data["friends"] = friends
+                    
+                    // Update the document with the new "friends" attribute
+                    db.collection("users").document(document.documentID)
+                        .setData(data) { error in
+                            if let error = error {
+                                print("Error updating document: \(error)")
+                            } else {
+                                print("Friend added to user successfully!")
+                            }
+                        }
+                }
+            }
     }
 }
 

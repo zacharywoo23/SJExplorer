@@ -39,16 +39,9 @@ struct SJExplorer: View {
                         let user = try? authManager.getUser()
                         
                         if authManager.isLoggedIn {
-                            
-                            if !authManager.isBioAuthenticated {
-                                BiometricView(authManager: authManager)
-                            } else {
-                                
-                                
-                                HomeTabs()
-                                
-                            }
-                            
+
+                            HomeTabs()
+           
                         } else if authManager.isRegistering {
                             RegisterView(authManager: authManager)
                             

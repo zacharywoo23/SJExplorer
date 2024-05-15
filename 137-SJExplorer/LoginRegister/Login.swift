@@ -94,6 +94,7 @@ struct LoginView: View {
                         do {
                             try await viewModel.signIn()
                             authManager.isLoggedIn=true
+                            authManager.authenticate()
                         } catch {
                             print("incorrect credentials")
                         }
