@@ -15,6 +15,8 @@ struct AccountView: View {
     var numFriends = 0
     let user = Auth.auth().currentUser
     let db = Firestore.firestore()
+    
+    @ObservedObject var networkManager = NetworkMonitor()
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -41,20 +43,26 @@ struct AccountView: View {
                         .bold()
                         .underline()
                         .position(x:geo.size.width/2, y:geo.size.width*2/5)
-                    Text(username)
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .bold()
-                        .position(x:geo.size.width/2, y:-geo.size.height/15)
-                    //show user email
-                    HStack {
-                        Text("Email: ")
-                        if user?.email != nil {
-                            let email=user?.email
-                            Text("\(email!)")
+                    if !networkManager.isConnected{
+                        Text("You are offline. Unable to fetch your account. Please reconnect and try again.")
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .bold()
+                            .position(x:geo.size.width/2, y:-geo.size.height/9)
+                    } else {
+                        Text(username)
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .bold()
+                            .position(x:geo.size.width/2, y:-geo.size.height/15)
+                        //show user email
+                        HStack {
+                            Text("Email: ")
+                            if user?.email != nil {
+                                let email=user?.email
+                                Text("\(email!)")
+                            }
                         }
+                        .position(x:geo.size.width/2, y:-geo.size.height/3)
                     }
-                    .position(x:geo.size.width/2, y:-geo.size.height/3)
-                   
                     
                     
                     

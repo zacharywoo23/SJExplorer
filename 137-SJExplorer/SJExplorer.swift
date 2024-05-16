@@ -58,10 +58,11 @@ struct SJExplorer: View {
                 
             }
             .navigationViewStyle(.stack)
-            
+        
         } else {
             NoWifi()
         }
+         
         
         
     }

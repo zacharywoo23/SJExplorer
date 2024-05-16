@@ -12,7 +12,7 @@ import SwiftUI
 
 struct MainPageView: View {
     
-    //@ObservedObject var authManager : AuthManager
+    @ObservedObject var networkManager = NetworkMonitor()
     var body: some View {
         GeometryReader { geo in
             ScrollView {
@@ -57,7 +57,8 @@ struct MainPageView: View {
                         .foregroundStyle(.black)
                         .padding(10)
                         .background(
-                            Color.blue)
+                            !networkManager.isConnected ? .gray : Color.blue)
+                        .disabled(!networkManager.isConnected )
                         
                       
                         Spacer()
@@ -65,12 +66,14 @@ struct MainPageView: View {
                         NavigationLink(destination: FriendsView()) {
                             Label("Friends", systemImage: "person.3.fill")
                         }
+                        
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .frame(width: geo.size.width)
                         .foregroundStyle(.black)
                         .padding(10)
                         .background(
-                            Color.blue)
+                            !networkManager.isConnected ? .gray : Color.blue)
+                        .disabled(!networkManager.isConnected )
                         
                         Spacer()
                             .frame(height:50)
@@ -83,7 +86,16 @@ struct MainPageView: View {
                         .foregroundStyle(.black)
                         .padding(10)
                         .background(
-                            Color.blue)
+                            !networkManager.isConnected ? .gray : Color.blue)
+                        .disabled(!networkManager.isConnected )
+                        
+                        Spacer()
+                            .frame(height:50)
+                        if (networkManager.isConnected) {
+                            Label("Connected", systemImage: "wifi")
+                        } else {
+                            Label("Offline", systemImage: "wifi.slash")
+                        }
                         Spacer()
                             .frame(height:150)
                         

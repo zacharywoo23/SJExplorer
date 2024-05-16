@@ -16,77 +16,83 @@ struct Maps: View {
     @ObservedObject var locationManager = LocationManager.shared
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
     
+    @ObservedObject var networkManager = NetworkMonitor()
+    
     @State var selec: Int?
     @State var showDetails = false
     
     var body: some View {
-        Group {
-            if locationManager.userLocation == nil {
-                RequestLocation()
-            } else {
-                Map(position: $cameraPosition, selection: $selec) {
-                    Annotation("MLK Library", coordinate: .mlkLib) {
-                        ZStack{
-                            Image(.mlkPic)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
-                                .padding(5)
-                                .foregroundStyle(.white)
-                                .background{
-                                    Circle()
-                                        .frame(width: 55, height: 55)
-                                        .foregroundStyle(cBlue)
-                                }                        }
-                    }.tag(1)
-                    
-                    Annotation("Engineering Building", coordinate: .engrB) {
-                        ZStack{
-                            Image(.engineering)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
-                                .padding(5)
-                                .foregroundStyle(.white)
-                                .background{
-                                    Circle()
-                                        .frame(width: 55, height: 55)
-                                        .foregroundStyle(cBlue)
-                                }
-                        }
-                    }.tag(2)
-                    
-                    Annotation("Dining Commons", coordinate: .dc) {
-                        ZStack{
-                            Image(.dcPic)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
-                                .padding(5)
-                                .foregroundStyle(.white)
-                                .background{
-                                    Circle()
-                                        .frame(width: 55, height: 55)
-                                        .foregroundStyle(cBlue)
-                                }
-                        }
-                    }.tag(3)
-                    UserAnnotation()
+        if !networkManager.isConnected {
+            OfflineMode()
+        } else {
+            Group {
+                if locationManager.userLocation == nil {
+                    RequestLocation()
+                } else {
+                    Map(position: $cameraPosition, selection: $selec) {
+                        Annotation("MLK Library", coordinate: .mlkLib) {
+                            ZStack{
+                                Image(.mlkPic)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+                                    .padding(5)
+                                    .foregroundStyle(.white)
+                                    .background{
+                                        Circle()
+                                            .frame(width: 55, height: 55)
+                                            .foregroundStyle(cBlue)
+                                    }                        }
+                        }.tag(1)
+                        
+                        Annotation("Engineering Building", coordinate: .engrB) {
+                            ZStack{
+                                Image(.engineering)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+                                    .padding(5)
+                                    .foregroundStyle(.white)
+                                    .background{
+                                        Circle()
+                                            .frame(width: 55, height: 55)
+                                            .foregroundStyle(cBlue)
+                                    }
+                            }
+                        }.tag(2)
+                        
+                        Annotation("Dining Commons", coordinate: .dc) {
+                            ZStack{
+                                Image(.dcPic)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+                                    .padding(5)
+                                    .foregroundStyle(.white)
+                                    .background{
+                                        Circle()
+                                            .frame(width: 55, height: 55)
+                                            .foregroundStyle(cBlue)
+                                    }
+                            }
+                        }.tag(3)
+                        UserAnnotation()
+                    }
+                    .mapControls {
+                        MapCompass()
+                        MapPitchToggle()
+                        MapUserLocationButton()
+                        
+                    }
+                    .onChange(of: selec, { oldValue, newValue in showDetails = newValue != nil
+                    })
+                    .sheet(isPresented: $showDetails, content: {
+                        GameDetails(gameSelect: $selec, show: $showDetails)
+                            .presentationDetents([.height(340)])
+                            .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                            .presentationCornerRadius(12)
+                    })
                 }
-                .mapControls {
-                    MapCompass()
-                    MapPitchToggle()
-                    MapUserLocationButton()
-                    
-                }
-                .onChange(of: selec, { oldValue, newValue in showDetails = newValue != nil
-                })
-                .sheet(isPresented: $showDetails, content: {
-                    GameDetails(gameSelect: $selec, show: $showDetails)
-                        .presentationDetents([.height(340)])
-                        .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
-                        .presentationCornerRadius(12)
-                })
             }
         }
     }
