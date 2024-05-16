@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeTabs: View {
+    @ObservedObject var networkManager = NetworkMonitor()
     
     let cBlue = Color(hex: 0x7C9CD4, alpha: 0.6)
     let cBlue2 = Color(hex: 0x7C9CD4, alpha: 1.0)
@@ -39,15 +40,7 @@ struct HomeTabs: View {
             
 
         }
-        .onAppear{
-            if !AuthManager.shared.isBioAuthenticated
-            {
-                AuthManager.shared.authenticate()
-                
-                
-            }
-            
-        }
+        
     }
 }
 

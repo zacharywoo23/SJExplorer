@@ -127,6 +127,7 @@ struct FriendsView: View {
                                         print("Error updating document: \(error)")
                                     } else {
                                         print("Added friend \(friendEmail) ")
+                                        self.friends.append(friendEmail)
                                     }
                                 }
                 }
