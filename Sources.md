@@ -8,6 +8,7 @@
 - Upgrade sound: https://freesound.org/people/danlucaz/sounds/517754/
 - Flappy Bird tileset (was modified from original): https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqay1YYXlJYWUwSGMyLVQySHh4d1gzMDluYnFRd3xBQ3Jtc0ttWi16aEhxX0xFc0N3b1YyUVlGLTNJX2tUYVgwUTR4dGI2ZG9DM2U4NDh0QVlPbVhtdjZ6aEUzSnM5dVVaZFd5NmxJZmphcmNrSjNRbkduWFVCaEtVblpsV181VUZ2aWlvZ1RjSFRvbVFQTHdZd3FIYw&q=https%3A%2F%2Fwww.spriters-resource.com%2Fmobile%2Fflappybird%2Fsheet%2F59894%2F&v=hKGzSYXPQwY
 - Hurt sound: https://mixkit.co/free-sound-effects/hurt/
+- Flappy Bird assets: https://github.com/samuelcust/flappy-bird-assets
 
 
 
